@@ -1,7 +1,7 @@
 {
   "name": "protoarch",
   "displayName": "ProtoArch",
-  "description": "",
+  "description": "An extension for creating flowchart-based architecture with code mapping.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
@@ -9,13 +9,12 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "protoarch.helloWorld",
-        "title": "Hello World"
+        "command": "protoarch.openFlowchart",
+        "title": "ProtoArch: Open Flowchart"
       }
     ]
   },

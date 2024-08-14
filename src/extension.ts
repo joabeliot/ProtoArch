@@ -1,26 +1,65 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+    console.log('Congratulations, your extension "ProtoArch" is now active!');
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "protoarch" is now active!');
+    let disposable = vscode.commands.registerCommand('protoarch.openFlowchart', () => {
+        const panel = vscode.window.createWebviewPanel(
+            'protoarchFlowchart',
+            'ProtoArch Flowchart',
+            vscode.ViewColumn.One,
+            {
+                enableScripts: true,
+                retainContextWhenHidden: true
+            }
+        );
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('protoarch.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from ProtoArch!');
-	});
+        // Set the HTML content for the webview
+        panel.webview.html = getWebviewContent();
+    });
 
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
+
+// Function to provide HTML content for the webview
+function getWebviewContent() {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ProtoArch Flowchart</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                background-color: #f5f5f5;
+            }
+            #canvas {
+                width: 90%;
+                height: 90%;
+                border: 1px solid #ccc;
+                background-color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script>
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            // Add basic drawing capabilities here, such as rendering blocks
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(10, 10, 150, 100);
+        </script>
+    </body>
+    </html>`;
+}

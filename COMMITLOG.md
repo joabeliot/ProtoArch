@@ -1,10 +1,10 @@
 ### Commit History
 
 # Commit-(C001): "Initialization" [link](https://github.com/joabeliot/ProtoArch/tree/048337b67e19818e95a905f0f14b9b02ad9677b5)
-1. Created `COMMIT.md` for Commit Recording
+1. Created `COMMITLOG.md` for Commit Recording
 
-# Commit-(C002): "Yeoman Initialization" [link]()
-[reference](https://code.visualstudio.com/api/get-started/your-first-extension)
+# Commit-(C002): "Yeoman Initialization" [link](https://github.com/joabeliot/ProtoArch/tree/f82db7deb2bb731a14439585e0cb6c0c4bd57529)
+## Setup Reference: [link](https://code.visualstudio.com/api/get-started/your-first-extension)
 1. Run `npm install --global yo generator-code` to install yeoman
 2. Run `yo code` to create a template for VSCode Extension
 3. Selection for the Following options
@@ -39,5 +39,14 @@ Changes to package.json were detected.
 ```
 
 This will spin the template `protoarch` folder.
+
 4. Additionally i had to install latest version of Nodejs. Version details [Ref](https://nodejs.org/en/download/package-manager/current)
+
 5. To run this code open `src/extension.ts` and hit `f5`... Once a new window where this extension is build is opened, press `ctrl+shift+p` and type `helloWorld` as mentioned in the `extension.ts` line 16 this will show a notification as thats the command given in the code when this command is entered.
+
+# Commit-(C002): "ProtoArch Start Point" [link](https://github.com/joabeliot/ProtoArch/tree/)
+
+1. Updated `extension.ts` to render a html page as base for the canvas with the command to open it as `openFlowchart`
+2. Added the command `openFlowchart` to `package.json`
+3. Same running process  hit `f5`... Once a new window where this extension is build is opened, press `ctrl+shift+p` and type `openFlowchart` which will open a html rendered page which will be the base for the upcomming works...
+4. Added `CHANGELOG.md`
