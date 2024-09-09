@@ -55,10 +55,10 @@ S1(
 ### WHAT IF!!!
 In the Parameter DataType rather than mentioning the actual term for 
 - Number mention any number from `0-9`. eg: `3`
-- Float mention any number with `.`. eg: `6.9`
+- Float mention any number with `.` eg: `6.9`
 - Character mention any character from `a-Z` except `f, F, t, T` (both Captial and Small will be taken as Character or this difference can be used in the future). eg: `f`
 - String mention any string of characters except `False, false, True, true, obvi, duh, sus, cap, nocap`. eg: `bruh`
-- Boolean mention `f, F, t, T, False, false, True, true, obvi, duh, sus, cap, nocap` can also include 1,0 have o think about the possibility, eg: `cap`
+- Boolean mention `f, F, t, T, False, false, True, true, obvi, duh, sus, cap, nocap` can also include `1,0` have to think about the possibility, eg: `cap`
 - List mention classic symbol []. It doesn't have to be that both together can be any one of them. eg: `]`
 - Dictionary mention classic symbol {}. It doesn't have to be that both together can be any one of them. eg: `{`
 - Tuple mention classic symbol (). It doesn't have to be that both together can be any one of them. eg: `)`
@@ -105,7 +105,6 @@ C1(
     direction: <Direction>, 
     comment: "<Comment>"
     tether: "<Marco> -> [<Polo1>(Carrying Parameter), <Polo2>, <Polo3>(Carrying Parameter)]" !Polo List, Two or More has to be in []!
-    tether: "<Marco> -> <Polo1>(Carrying Parameter)"
 )
 ```
 or
@@ -116,7 +115,6 @@ C1(
     color: <Color>, 
     direction: <Direction>, 
     comment: "<Comment>",
-    tether: <Marco> -> [<Polo1>(Carrying Parameter), <Polo2>, <Polo3>(Carrying Parameter)] !Polo List, Two or More has to be in []!
     tether: <Marco> -> <Polo1>(Carrying Parameter)
 )
 ```
