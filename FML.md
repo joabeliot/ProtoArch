@@ -54,14 +54,14 @@ S1(
 
 ### WHAT IF!!!
 In the Parameter DataType rather than mentioning the actual term for 
-- Number mention any number from 0-9. eg: `3`
-- Float mention any number with ".". eg: `6.9`
-- Character mention any character from a-Z except f,F,t,T (both Captial and Small will be taken as Character or this difference can be used in future). eg: `f`
-- String mention any string of characters except False,false,True,true,obvi,duh,sus,cap,nocap. eg: "bruh"
-- Boolean mention f,F,t,T,False,false,True,true,obvi,duh,sus,cap,nocap can also include 1,0 have o think about the possibility, eg: `cap`
-- List mention classic symbol []. Doesnt have to be the both together can be any one of them. eg: `]`
-- Dictionary mention classic symbol {}. Doesnt have to be the both together can be any one of them. eg: `{`
-- Tuple mention classic symbol (). Doesnt have to be the both together can be any one of them. eg: `)`
+- Number mention any number from `0-9`. eg: `3`
+- Float mention any number with `.`. eg: `6.9`
+- Character mention any character from `a-Z` except `f, F, t, T` (both Captial and Small will be taken as Character or this difference can be used in the future). eg: `f`
+- String mention any string of characters except `False, false, True, true, obvi, duh, sus, cap, nocap`. eg: `bruh`
+- Boolean mention `f, F, t, T, False, false, True, true, obvi, duh, sus, cap, nocap` can also include 1,0 have o think about the possibility, eg: `cap`
+- List mention classic symbol []. It doesn't have to be that both together can be any one of them. eg: `]`
+- Dictionary mention classic symbol {}. It doesn't have to be that both together can be any one of them. eg: `{`
+- Tuple mention classic symbol (). It doesn't have to be that both together can be any one of them. eg: `)`
 .
 .
 . Goes on...
@@ -69,20 +69,20 @@ In the Parameter DataType rather than mentioning the actual term for
 ### Block Parameters
 
 - **S1**: Unique identifier for the Block. Automatically assigned in increasing order if not provided.
-- **Type/Class**: The shape of the Block predefined CSS file kinda like bootstrap (e.g., `idsquare`, `idoval`, `idrect`, etc.).
+- **Type/Class**: The shape of the Block predefined CSS file is kinda like Bootstrap (e.g., `idsquare`, `idoval`, `idrect`, etc.).
 - **Size**: `(Width, Height, Border)`. Defines the dimensions and border of the Block.
-- **Position**: Position of the Block in the Canvas. Represented by two Numeric values X and Y.
+- **Position**: Position of the Block in the Canvas. It is represented by two Numeric values X and Y.
 - **Color**: Box and border color defined in HEX format includes Alpha value (e.g., `#B040E0D0`).
 - **Path**: Path of the source code or files related to the Block and the line which it has to navigate to when ctrl clicked.
 - **Parameters**: Parameters are the variables defined in the function linked to the block `[]`.
-- **Custom**: A Field open for Custom ideas in future or user useage.
+- **Custom**: A Field open for Custom ideas in the future or user usage.
 - **Comment**: Additional information for collaboration and other notes are wrapped in `""`. You can tag users using `@` and refer to other Blocks wrapped in `< >` and the Connections wrapped in `--`.
 
 ---
 
 ## Connection Definition
 
-Connections define the flow between Blocks. Each connection is represented with the following format:
+Connections define the flow between Blocks. Each connection is represented in the following format:
 
 - Type/Class (Optional takes Default as value)
 - Weight (Optional takes Default as value)
@@ -91,7 +91,7 @@ Connections define the flow between Blocks. Each connection is represented with 
     - Marco
     - Polo List
 - Carrying Parameter (Optional takes None as value)
-- Direction
+- Direction (Optional takes None as value)
 - Comment (Optional)
 
 ### Syntax
