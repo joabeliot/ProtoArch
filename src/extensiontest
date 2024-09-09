@@ -1,0 +1,180 @@
+import * as vscode from 'vscode';
+
+export function activate(context: vscode.ExtensionContext) {
+  context.subscriptions.push(
+    vscode.commands.registerCommand('protoarch.openFlowchart', () => {
+      const panel = vscode.window.createWebviewPanel(
+        'diagramWebview',
+        'Diagram Editor',
+        vscode.ViewColumn.One,
+        {
+          enableScripts: true, // Enable JavaScript in the WebView
+        }
+      );
+
+      // Serve the HTML content to the WebView
+      panel.webview.html = getWebviewContent();
+    })
+  );
+}
+
+function getWebviewContent(): string {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radial Menu for Flowchart</title>
+  <style>
+    /* Basic canvas style */
+    #canvas-container {
+      width: 100%;
+      height: 100vh;
+      background-color: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial Menu Styles */
+    .radial-menu {
+      position: absolute;
+      display: none;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.8);
+      top: 50px;
+      left: 50px;
+      pointer-events: none;
+    }
+
+    .menu-option {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+    }
+
+    .menu-option:hover {
+      background: lightblue;
+    }
+
+    .menu-option span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Position menu options */
+    .option-1 { top: 0; left: 50%; transform: translate(-50%, -100%); }
+    .option-2 { top: 50%; left: 0; transform: translate(-100%, -50%); }
+    .option-3 { top: 50%; left: 100%; transform: translate(0, -50%); }
+    .option-4 { top: 100%; left: 50%; transform: translate(-50%, 0); }
+  </style>
+</head>
+<body>
+
+<div id="canvas-container">
+  <canvas id="canvas"></canvas>
+
+  <!-- Radial Menu -->
+  <div class="radial-menu" id="radial-menu">
+    <div class="menu-option option-1" data-shape="square"><span>□</span></div>
+    <div class="menu-option option-2" data-shape="rectangle"><span>▬</span></div>
+    <div class="menu-option option-3" data-shape="triangle"><span>△</span></div>
+    <div class="menu-option option-4" data-shape="line"><span>⇄</span></div>
+  </div>
+</div>
+
+<script>
+  // Get the canvas and context
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Handle radial menu
+  const radialMenu = document.getElementById('radial-menu');
+
+  // Function to open the radial menu
+  function openRadialMenu(x, y) {
+    radialMenu.style.left = \`\${x - 100}px\`;
+    radialMenu.style.top = \`\${y - 100}px\`;
+    radialMenu.style.display = 'block';
+    radialMenu.style.pointerEvents = 'auto';
+  }
+
+  // Function to close the radial menu
+  function closeRadialMenu() {
+    radialMenu.style.display = 'none';
+    radialMenu.style.pointerEvents = 'none';
+  }
+
+  // Open the radial menu on middle mouse click
+  canvas.addEventListener('mousedown', (e) => {
+    if (e.button === 1) {  // Middle mouse click
+      openRadialMenu(e.clientX, e.clientY);
+      e.preventDefault();
+    }
+  });
+
+  // Hide the radial menu on any click
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.radial-menu') === null) {
+      closeRadialMenu();
+    }
+  });
+
+  // Function to draw a shape based on menu selection
+  function drawShape(shape, x, y) {
+    ctx.fillStyle = "blue";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    
+    switch (shape) {
+      case 'square':
+        ctx.fillRect(x - 25, y - 25, 50, 50);
+        break;
+      case 'rectangle':
+        ctx.fillRect(x - 40, y - 20, 80, 40);
+        break;
+      case 'triangle':
+        ctx.beginPath();
+        ctx.moveTo(x, y - 30);
+        ctx.lineTo(x - 30, y + 30);
+        ctx.lineTo(x + 30, y + 30);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        break;
+      case 'line':
+        ctx.beginPath();
+        ctx.moveTo(x - 50, y);
+        ctx.lineTo(x + 50, y);
+        ctx.stroke();
+        break;
+      default:
+        break;
+    }
+  }
+
+  // Handle clicks on menu options
+  document.querySelectorAll('.menu-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+      const shape = e.currentTarget.getAttribute('data-shape');
+      const menuX = parseInt(radialMenu.style.left) + 100;
+      const menuY = parseInt(radialMenu.style.top) + 100;
+      drawShape(shape, menuX, menuY);
+      closeRadialMenu();
+    });
+  });
+
+</script>
+</body>
+</html>
+`;
+}
